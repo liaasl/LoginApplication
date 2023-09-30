@@ -1,16 +1,22 @@
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="25">
         <mat-toolbar color="primary">Login Application</mat-toolbar>
-        <form fxLayoutAlign="stretch" fxLayout="column" class="login-form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayoutAlign="stretch" fxLayout="column" class="login-form">
             <mat-form-field>
-              <input matInput placeholder="User ID">
+              <input name="userId" matInput placeholder="User ID" formControlName="userId"
+              >
             </mat-form-field>
           
             <mat-form-field>
-                <input matInput type="password" placeholder="Password">
+                <input name="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
               </mat-form-field>
 
               <button mat-raised-button color="primary" type="submit">Login</button>
+              <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
           </form>
           
     </mat-card>
