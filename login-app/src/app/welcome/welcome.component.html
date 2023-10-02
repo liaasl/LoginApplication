@@ -1,9 +1,8 @@
 <div class="form-group">
     <mat-toolbar color="primary">
-        <h3>Welcome, </h3>
         <ng-container *ngIf="loggedInUsername !== ''">
             <div class="alert alert-success">
-              {{ loggedInUsername }}!
+              Name: {{ name }} - Username: {{ loggedInUsername }} - Role: {{ role }}
             </div>
           </ng-container>
         <span class="fill-right-space"></span>

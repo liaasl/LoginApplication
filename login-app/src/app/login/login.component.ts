@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
 
   
         // store user data in variable
-        const loggedInUser = { userId: user.userId, role: user.role}
+        const loggedInUser = { userId: user.userId, name: user.name, role: user.role}
 
         // update storage service with logedInUser's data
         this.storageService.saveUser(loggedInUser, user.id.toString());

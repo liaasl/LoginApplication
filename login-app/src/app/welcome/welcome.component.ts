@@ -11,6 +11,8 @@ export class WelcomeComponent implements OnInit {
 
 
   loggedInUsername: string = '';
+  name: string = '';
+  role: string = '';
   isLoading = false;
   isLoggedIn = false;
   userId!: string;
@@ -26,6 +28,8 @@ export class WelcomeComponent implements OnInit {
           const user = this.storageService.getUser();
           console.log('user: ', user);
           this.loggedInUsername = user.userId;
+          this.name = user.name || '';
+          this.role = user.role || '';
           this.isManager = user.role === 'Manager';
         }
 
