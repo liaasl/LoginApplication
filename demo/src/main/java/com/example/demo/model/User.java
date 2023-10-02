@@ -24,6 +24,9 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "name")
+    private String name;
+
     //getters and setters
     public String getUserId() {
         return userId;
@@ -56,5 +59,12 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
