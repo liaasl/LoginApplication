@@ -14,6 +14,7 @@ export class WelcomeComponent implements OnInit {
   isLoading = false;
   isLoggedIn = false;
   userId!: string;
+  isManager: boolean = false;
 
   constructor(private router: Router,
     private storageService: StorageService) {}
@@ -25,6 +26,7 @@ export class WelcomeComponent implements OnInit {
           const user = this.storageService.getUser();
           console.log('user: ', user);
           this.loggedInUsername = user.userId;
+          this.isManager = user.role === 'Manager';
         }
 
         if (this.storageService.isLoggedIn()) {

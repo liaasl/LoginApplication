@@ -56,12 +56,13 @@ export class LoginComponent implements OnInit {
       if (user && user.id) { 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+
   
         // store user data in variable
-        const loggedInUser = { userId: this.loginForm.value.userId };
-        
+        const loggedInUser = { userId: user.userId, role: user.role}
+
         // update storage service with logedInUser's data
-        this.storageService.saveUser(loggedInUser, loggedInUser.userId); 
+        this.storageService.saveUser(loggedInUser, user.id.toString());
   
         // display alert for loggedInUser
         alert(loggedInUser.userId + ' is logged in.')
@@ -74,13 +75,13 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/welcome']);
       } else {
         console.log("Error");
-        this.errorMessage = 'Invalid userId or password';
+        this.errorMessage = 'Invalid userid or password';
         this.isLoginFailed = true;
       }
     })
     .catch(error => {
       console.error('Login failed', error);
-      this.errorMessage = 'Invalid userId or password';
+      this.errorMessage = 'Invalid userid or password';
       this.isLoginFailed = true;
     });
   }
