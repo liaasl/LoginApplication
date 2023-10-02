@@ -1,1 +1,15 @@
-<p>welcome works!</p>
+<div class="form-group">
+    <mat-toolbar color="primary">
+        <h3>Welcome, </h3>
+        <ng-container *ngIf="loggedInUsername !== ''">
+            <div class="alert alert-success">
+              {{ loggedInUsername }}!
+            </div>
+          </ng-container>
+        <span class="fill-right-space"></span>
+        <button mat-button type="button" (click)="logout()">Logout</button>
+    </mat-toolbar>
+
+
+
+</div>
