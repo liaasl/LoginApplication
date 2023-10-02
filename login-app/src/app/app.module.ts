@@ -16,13 +16,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {HttpClientModule} from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { RestrictedComponent } from './restricted/restricted.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    RestrictedComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     RouterModule.forRoot([
       {path: '', pathMatch: 'full', redirectTo: 'login'},
       {path: 'login', component: LoginComponent},
-      {path: 'welcome', component: WelcomeComponent}
+      {path: 'welcome', component: WelcomeComponent},
+      {path: 'restricted', component: RestrictedComponent}
     ]),
     BrowserAnimationsModule,
     FlexLayoutModule,
