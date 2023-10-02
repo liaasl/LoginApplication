@@ -5,6 +5,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent {
   errorMessage: string | undefined;
   hide = true;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.loginForm = this.fb.group({
       userId: ['', Validators.required],
       password: ['', Validators.required]
@@ -25,15 +26,18 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    const formValue = this.loginForm.value;
-    if (formValue.userId === 'user1' && formValue.password === 'abc123') {
-      console.log('Login Success');
-      // navigate to welcome page
-      this.router.navigate(['/welcome']);
-    } else {
-      this.errorMessage = 'Invalid userId or password';
-      console.log('Login Failed');
-    }
+    this.authService.login(this.loginForm.value.userId, this.loginForm.value.password)
+      .subscribe(
+        user => {
+          console.log('Login successful', user);
+          // navigate to the welcome page
+          this.router.navigate(['/welcome']);
+        },
+        error => {
+          console.error('Login failed', error);
+          this.errorMessage = 'Invalid userId or password';
+        }
+      );
   }
 
 }
